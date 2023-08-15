@@ -96,7 +96,7 @@
 import { ref, reactive, computed } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { email, required, minLength, sameAs } from '@vuelidate/validators'
-import { RequestRegisterUser } from '@/types/requests/auth'
+import type { RequestRegisterUser } from '@/types/auth'
 import { useAuth } from 'vue-auth3'
 import { useAlertStore } from '@/stores/alert'
 
