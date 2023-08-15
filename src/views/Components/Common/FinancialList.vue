@@ -14,7 +14,7 @@
 </template>
 <script setup lang="ts">
 import BaseListItemTransaction from '@/components/molecules/BaseListItemTransaction.vue'
-import { Transaction } from '@/types/Transaction'
+import type { Transaction } from '@/types/transaction'
 const props = defineProps<{
   transactions: Transaction[]
   title: string
