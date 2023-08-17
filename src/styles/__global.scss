@@ -25,3 +25,40 @@
 .line-height-sm {
   line-height: 1;
 }
+
+.v-input.v-input--density-default.selection-input{
+  margin:0;
+}
+
+.v-input.selection-input {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+
+  .v-field {
+
+    .v-field__outline {
+      display: none;
+    }
+
+    &__append-inner {
+      margin: auto;
+      color: #ffffff;
+      padding: 0;
+    }
+    &__input {
+      padding: 0px;
+    }
+
+    .v-field__field {
+      .v-select__selection {
+        margin: 0;
+        &-text {
+          color: #ffffff;
+          font-size: 1.25rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

@@ -8,8 +8,7 @@
         <v-select
           v-model="yearMonth"
           variant="underlined"
-          color="white"
-          width="20"
+          class="selection-input"
           :items="dates"
           :menu-icon="mdiChevronDown"
           :loading="loadingSelect"
@@ -96,10 +95,25 @@ function updateExpenses() {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .button-add {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
 }
+
+.v-input.selection-input{
+  justify-content: start;
+}
+
+.v-select__selection {
+  &-text {
+    color: rgba(var(--v-theme-primary), 1) !important;
+  }
+}
+
+.v-field__append-inner {
+  color: rgba(var(--v-theme-primary), 1) !important;
+}
+
 </style>

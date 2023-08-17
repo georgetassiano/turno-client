@@ -63,7 +63,7 @@
             :error-messages="v$.description.$errors.map((e) => e.$message)"
           ></v-text-field>
         </div>
-        <div class="button-end-page pa-4">
+        <div class="pa-4">
           <v-btn
             class="text-xxs text-uppercase py-5"
             color="primary"
@@ -149,12 +149,6 @@ async function submitExpense() {
 </script>
 
 <style lang="scss">
-.button-end-page {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 
 .v-field__input {
   padding-top: 0px !important;

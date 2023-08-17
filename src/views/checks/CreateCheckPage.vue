@@ -60,13 +60,36 @@
         </div>
         <div class="upload-area pa-4">
           <v-file-input
+            variant="solo"
+            width="30"
             v-model="form.file"
             :error-messages="v$.file.$errors.map((e) => e.$message)"
-            class="upload-button border-dashed text-xxs text-uppercase py-10 flex-column justify-center"
-            label="File input"
-          ></v-file-input>
+            :class="`upload-button border-dashed  ${!form.file?'py-12': ''}`"
+          >
+            <template v-slot:label v-if="!form.file">
+              <div class="flex-column">
+                <v-icon
+                    color="primary ml-16"
+                    :icon="mdiCloudUpload"
+                >
+                </v-icon>
+                <p class="text-sm pt-4 text-primary-light-1 text-xxs text-uppercase">Upload check picture</p>
+              </div>
+            </template>
+            <template v-slot:selection="{ fileNames }">
+              <template v-for="fileName in fileNames" :key="fileName">
+                <v-img
+                    :width="300"
+                    aspect-ratio="16/9"
+                    cover
+                    :src="getImage()"
+                >
+                </v-img>
+              </template>
+            </template>
+          </v-file-input>
         </div>
-        <div class="button-end-page pa-4">
+        <div class="pa-4">
           <v-btn
             class="text-xxs text-uppercase py-5"
             color="primary"
@@ -85,7 +108,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { mdiCash, mdiStar } from '@mdi/js'
+import { mdiCash, mdiStar, mdiCloudUpload } from '@mdi/js'
 import { useAlertStore } from '@/stores/alert'
 import { formatValueToLocaleCurrency } from '@/utils/formats'
 import { getBalance } from '@/services/account'
@@ -117,6 +140,10 @@ const rules = {
   file: { required }
 }
 const v$ = useVuelidate(rules, form, { $externalResults })
+
+function getImage (){
+  return URL.createObjectURL(form.value.file[0]);
+}
 
 onMounted(async () => {
   loadingStart.value = true
@@ -165,24 +192,20 @@ async function submitCheck() {
   border: 2px dashed rgba(var(--v-theme-primary-light-1), 1) !important;
 }
 
+.v-label.v-field-label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .upload-button {
-  .v-btn__content {
-    display: flex !important;
-    flex-direction: column !important;
+  .v-input__control{
+    .v-field--variant-solo.v-field{
+        box-shadow: none;
+    }
   }
-}
-
-.button-end-page {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.v-field__input {
-  padding-top: 0px !important;
-  padding-left: 32px !important;
-  min-height: 0px !important;
-  font-size: 22px;
+  .v-input__prepend{
+    display: none;
+  }
 }
 </style>

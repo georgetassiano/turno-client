@@ -14,8 +14,7 @@
         <v-select
           v-model="yearMonth"
           variant="underlined"
-          color="white"
-          width="30"
+          class="selection-input"
           :items="dates"
           :menu-icon="mdiChevronDown"
           @update:model-value="updateTransactions"
